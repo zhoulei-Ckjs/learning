@@ -15,6 +15,7 @@ public class GenericDetail {
         ArrayList arrayList = new ArrayList();      //等价于Object
         arrayList.add("XX");
         Tiger tiger = new Tiger();
+        Tiger tiger2 = new Tiger();
     }
 }
 class A{}
