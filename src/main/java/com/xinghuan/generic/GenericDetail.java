@@ -2,6 +2,7 @@ package com.xinghuan.generic;
 
 import java.util.ArrayList;
 
+@SuppressWarnings({"all"})
 public class GenericDetail {
     public static void main(String[] args) {
         ArrayList<Integer> integers = new ArrayList<Integer>();
