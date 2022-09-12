@@ -14,4 +14,7 @@ public class Cat {
     public void cry(){
         System.out.println(name + "喵喵叫...");
     }
+    public void cry_master(){
+        System.out.println(name + "喵喵叫...");
+    }
 }
