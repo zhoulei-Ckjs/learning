@@ -14,6 +14,38 @@ public class reflectionUtils {
     public static void main(String[] args) {
     }
     @Test
+    public void api_02() throws ClassNotFoundException {
+        //得到Class对象
+        Class<?> aClass = Class.forName("com.xinghuan.reflection.Person");
+//        //获取本类中所有属性
+//        Field[] declaredFields = aClass.getDeclaredFields();
+//        for (Field declaredField:
+//             declaredFields) {
+//            System.out.println("本类中所有属性= " + declaredField.getName() + " 该属性的修饰符 " + declaredField.getModifiers()
+//                    + " 该属性的类型：" + declaredField.getType());
+//        }
+//        Method[] declaredMethods = aClass.getDeclaredMethods();
+//        for (Method declaredMethod :
+//                declaredMethods) {
+//            System.out.println("本类中所有方法=" + declaredMethod.getName() + " 该方法的修饰符 " + declaredMethod.getModifiers()
+//                    + " 该方法的返回类型：" + declaredMethod.getReturnType());
+//            Class<?>[] parameterTypes = declaredMethod.getParameterTypes();
+//            System.out.print("该方法的形参类型为=");
+//            for (Class<?> parameterType : parameterTypes) {
+//                System.out.print(" " + parameterType);
+//            }
+//            System.out.println();
+//        }
+        Constructor<?>[] constructors = aClass.getConstructors();               //获取所有Public修饰的构造器
+        for (Constructor<?> constructor : constructors){
+            System.out.println(constructor.getName());
+            Class<?>[] parameterTypes = constructor.getParameterTypes();
+            for (Class<?> parameterType : parameterTypes) {
+                System.out.println("\t该构造器的形参类型=" + parameterType);
+            }
+        }
+    }
+    @Test
     public void aip_01() throws ClassNotFoundException {
         Class<?> aClass = Class.forName("com.xinghuan.reflection.Person");      //取得class对象
         System.out.println(aClass.getName());       //获取全类名
@@ -68,7 +100,7 @@ interface IB{
 @Deprecated
 class Person extends A implements IA, IB{
     public String name;
-    protected int age;
+    protected static int age;
     String job;
     private double sal;
     public Person() {
@@ -77,11 +109,11 @@ class Person extends A implements IA, IB{
     }
     public Person(String name, int age) {
     }
-    public void m1(){
+    public void m1(String name, int age, double sal){
 
     }
-    protected void m2(){
-
+    protected String m2(){
+        return null;
     }
     void m3(){
 
