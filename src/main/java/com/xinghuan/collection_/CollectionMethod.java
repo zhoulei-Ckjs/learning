@@ -1,20 +1,40 @@
 package com.xinghuan.collection_;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CollectionMethod {
     @SuppressWarnings({"all"})
-    public static void main(String[] args) {
-        List list = new ArrayList();
+    ArrayList<Object> list = new ArrayList();
+    Object resList;// = new ArrayList();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        CollectionMethod collectionMethod = new CollectionMethod();
+        collectionMethod.deserialize();
+    }
+    public Object deserialize() throws IOException, ClassNotFoundException {
         list.add("jack");
         list.add(10);
         list.add(true);
-        System.out.println("list = " + list);
-        list.remove(0);
-        System.out.println("list = " + list);
-        list.remove(true);
-        System.out.println("list = " + list);
-        System.out.println(list.contains(10));
+        ArrayList<Object> list1 = new ArrayList<>();
+        list1.add("mother");
+        list1.add(15);
+        list.add(list1);
+
+        int name = 13;
+        resList = deepCopy(name);
+        return resList;
+    }
+    private Object deepCopy(Object srcList) throws IOException, ClassNotFoundException {
+        //序列化
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(srcList);
+
+        //反序列化
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        Object desList = (Object) ois.readObject();
+        return desList;
     }
 }
